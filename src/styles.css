@@ -27,8 +27,19 @@
   padding: 1.2rem 1.6rem;
 }
 
+.mapboxgl-popup-tip {
+  display: none;
+}
+
 .mapboxgl-popup-content {
   --at-apply: px-1.5 py-1 shadow-lg;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mapboxgl-popup-content {
+    background: #1f2937;
+    color: #f9fafb;
+  }
 }
 
 .mapbox-legend {
@@ -46,6 +57,13 @@
   color: #111827;
   font-size: 0.85rem;
   line-height: 1.1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mapbox-legend {
+    background: #1f2937e6;
+    color: #f9fafb;
+  }
 }
 
 .mapbox-legend__item {
