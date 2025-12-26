@@ -40,7 +40,15 @@ export function App() {
       attributionControl: false,
     })
 
-    map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }))
+    map.addControl(
+      new MapboxLanguage({
+        defaultLanguage: {
+          'zh-cn': 'zh-Hans',
+          'zh-hk': 'zh-Hant',
+          'zh-tw': 'zh-Hant',
+        }[navigator.language.toLowerCase()],
+      }),
+    )
 
     map.on('style.load', () => {
       map.setFog({
@@ -107,14 +115,14 @@ export function App() {
             class="mapbox-legend__dot mapbox-legend__dot--residence"
             aria-hidden="true"
           />
-          <span>居住</span>
+          <span>Lived</span>
         </div>
         <div class="mapbox-legend__item">
           <span
             class="mapbox-legend__dot mapbox-legend__dot--travel"
             aria-hidden="true"
           />
-          <span>旅行</span>
+          <span>Traveled</span>
         </div>
       </div>
     </>
