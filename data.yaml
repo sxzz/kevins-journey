@@ -158,6 +158,19 @@ travel:
   - name: Singapore 新加坡 # R536780
     coords: 1.357107,103.8194992
 
+  # Europe
+  - name: Amsterdam # R271110
+    coords: 52.3730796,4.8924534
+
+  - name: Brussels # R58274
+    coords: 50.8465573,4.351697
+
+  - name: Paris # R71525
+    coords: 48.8534951,2.3483915
+
+  - name: Milan # R44915
+    coords: 45.4641943,9.1896346
+
 residence:
   - name: 2018.07 南昌 # N244081434
     coords: 28.687547,115.8540042
