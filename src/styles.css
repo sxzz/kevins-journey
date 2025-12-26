@@ -99,3 +99,7 @@
   transform: scale(1.15);
   box-shadow: 0 0 0 5px #2563eb3d, 0 2px 6px #00000047;
 }
+
+.mapboxgl-ctrl-logo {
+  display: none !important;
+}
