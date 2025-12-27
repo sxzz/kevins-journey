@@ -30,7 +30,7 @@ export type MapData = {
 
 export function useMap(
   container: HTMLElement,
-  projection?: Accessor<ProjectionSpecification['name']>,
+  projection: Accessor<ProjectionSpecification['name']>,
 ) {
   const dark = useDark()
   const style = createMemo(
@@ -47,13 +47,19 @@ export function useMap(
   })
 
   effect(() => {
-    map()?.setStyle(style())
+    const m = map()
+    const s = style()
+
+    if (!m || !m.loaded()) return
+    m.setStyle(s)
   })
 
   effect(() => {
-    if (projection && map()) {
-      map()!.setProjection(projection())
-    }
+    const m = map()
+    const p = projection()
+
+    if (!m || !m.loaded()) return
+    m.setProjection(p)
   })
 
   return map
