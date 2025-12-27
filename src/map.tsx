@@ -1,6 +1,17 @@
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
-import mapboxgl, { Map, Marker, Popup } from 'mapbox-gl'
-import { createMemo, createSignal, onCleanup, onMount } from 'solid-js'
+import mapboxgl, {
+  Map,
+  Marker,
+  Popup,
+  type ProjectionSpecification,
+} from 'mapbox-gl'
+import {
+  createMemo,
+  createSignal,
+  onCleanup,
+  onMount,
+  type Accessor,
+} from 'solid-js'
 import { effect } from 'solid-js/web'
 import { useDark } from './utils'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -17,7 +28,10 @@ export type MapData = {
   places: Place[]
 }[]
 
-export function useMap(container: HTMLElement) {
+export function useMap(
+  container: HTMLElement,
+  projection?: Accessor<ProjectionSpecification['name']>,
+) {
   const [dark] = useDark()
   const style = createMemo(
     () => `mapbox://styles/mapbox/${dark() ? 'dark' : 'light'}-v10`,
@@ -36,6 +50,12 @@ export function useMap(container: HTMLElement) {
     map()?.setStyle(style())
   })
 
+  effect(() => {
+    if (projection && map()) {
+      map()!.setProjection(projection())
+    }
+  })
+
   return map
 
   function initMap() {
@@ -46,7 +66,7 @@ export function useMap(container: HTMLElement) {
       style: style(),
       center: [100, 30],
       zoom: 2,
-      projection: 'globe',
+      projection: (projection?.() || 'globe') as any,
       dragRotate: true,
       touchPitch: true,
       attributionControl: false,
