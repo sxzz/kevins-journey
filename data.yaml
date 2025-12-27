@@ -285,3 +285,16 @@
 
     - label: WUH # W233511368
       coords: 30.7756953,114.2171790
+
+- id: wish
+  color: pink
+  label: Wish
+  places:
+    - label: 台北 # R1293250
+      coords: 25.0375198,121.5636796
+
+    - label: 三亚 # R2128284
+      coords: 18.2534658,109.5034392
+
+    - label: 悉尼 # R5750005
+      coords: -33.8698439,151.2082848
