@@ -8,6 +8,7 @@ import { effect } from 'solid-js/web'
 interface Item {
   name: string
   coords: [number, number] | `${number},${number}`
+  current?: boolean
 }
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
@@ -56,9 +57,11 @@ export function App() {
     })
 
     for (const [key, locations] of Object.entries(data) as [string, Item[]][]) {
-      for (const { name, coords } of locations) {
+      for (const { name, coords, current } of locations) {
         const div = document.createElement('div')
-        div.className = `mapbox-marker mapbox-marker--${key}`
+        div.className = `mapbox-marker mapbox-marker--${key} ${
+          current ? 'animate-pulse' : ''
+        }`
         div.setAttribute('aria-label', name)
         div.tabIndex = 0
         const popup = new mapboxgl.Popup({
