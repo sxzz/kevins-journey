@@ -1,16 +1,6 @@
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-
 .mapbox-marker {
-  width: 10px;
-  height: 10px;
-  border-radius: 9999px;
-  border: 1px solid #fff;
-  box-shadow: 0 0 0 4px #11182714, 0 1px 3px #00000040;
-  cursor: pointer;
+  --at-apply: w-2.5 h-2.5 rounded-full border border-white cursor-pointer
+    shadow-md;
 }
 
 .mapbox-marker--travel {
@@ -18,67 +8,43 @@
   box-shadow: 0 0 0 4px #f973162e, 0 1px 3px #00000040;
 }
 
+.mapbox-marker--travel:hover {
+  box-shadow: 0 0 0 5px #f973163d, 0 2px 6px #00000047;
+}
+
 .mapbox-marker--residence {
   background: #2563eb;
   box-shadow: 0 0 0 4px #2563eb2e, 0 1px 3px #00000040;
 }
 
-.mapbox-placeholder {
-  padding: 1.2rem 1.6rem;
+.mapbox-marker--residence:hover {
+  box-shadow: 0 0 0 5px #2563eb3d, 0 2px 6px #00000047;
 }
 
 .mapboxgl-popup-tip {
-  display: none;
+  --at-apply: hidden;
 }
 
 .mapboxgl-popup-content {
-  --at-apply: px-1.5 py-1 shadow-lg;
+  --at-apply: px-1.5 py-1 shadow-lg dark-bg-#1f2937 dark-text-#f9fafb;
 }
 
-@media (prefers-color-scheme: dark) {
-  .mapboxgl-popup-content {
-    background: #1f2937;
-    color: #f9fafb;
-  }
-}
+/* 
+<div class="mapboxgl-popup mapboxgl-popup-anchor-bottom" style="max-width: 240px; transform: translate(-50%, -100%) translate(787px, 379px);"><div class="mapboxgl-popup-tip"></div><div class="mapboxgl-popup-content">2023.08 杭州良渚</div></div>
+ */
 
 .mapbox-legend {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.2);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 8px 24px #0000001f;
-  backdrop-filter: blur(6px);
-  color: #111827;
-  font-size: 0.85rem;
-  line-height: 1.1;
-}
-
-@media (prefers-color-scheme: dark) {
-  .mapbox-legend {
-    color: #f9fafb;
-  }
+  --at-apply: absolute right-6 bottom-6 flex gap-3 items-center px-3 py-2
+    rounded-full bg-white/20 backdrop-blur-md shadow-lg text-#111827
+    dark-text-#f9fafb text-sm;
 }
 
 .mapbox-legend__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  white-space: nowrap;
+  --at-apply: flex items-center gap-1.4 whitespace-nowrap;
 }
 
 .mapbox-legend__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 9999px;
-  display: inline-block;
-  border: 2px solid #fff;
+  --at-apply: w-2.5 h-2.5 rounded-full border-2 border-white;
   box-shadow: 0 0 0 2px #11182714;
 }
 
@@ -90,16 +56,6 @@
   background: #2563eb;
 }
 
-.mapbox-marker--travel:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 0 5px #f973163d, 0 2px 6px #00000047;
-}
-
-.mapbox-marker--residence:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 0 5px #2563eb3d, 0 2px 6px #00000047;
-}
-
 .mapboxgl-ctrl-logo {
-  display: none !important;
+  --at-apply: 'hidden!';
 }
