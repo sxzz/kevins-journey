@@ -1,21 +1,16 @@
 import { ReactiveSet } from '@solid-primitives/set'
 import { makePersisted } from '@solid-primitives/storage'
-import { createDeferred, createSignal, For, Index, Show } from 'solid-js'
+import { createDeferred, createSignal, For, Index } from 'solid-js'
 import data from '../data.yaml'
-import { PlaceMarker, useMap } from './map'
+import { MapBox, PlaceMarker } from './Map'
 import type { ProjectionSpecification } from 'mapbox-gl'
 
 export function App() {
-  const container = (
-    <div style={{ width: '100vw', height: '100vh' }}></div>
-  ) as HTMLDivElement
-
   const activeLegends = new ReactiveSet<string>(['Visited', 'Residence'])
   const [projection, setProjection] = makePersisted(
     createSignal<ProjectionSpecification['name']>('globe'),
     { name: 'map-projection' },
   )
-  const map = useMap(container, projection)
 
   const filteredData = createDeferred(() =>
     data.filter((item) => activeLegends.has(item.label)),
@@ -23,19 +18,15 @@ export function App() {
 
   return (
     <>
-      {container}
-
-      <Show when={map()}>
+      <MapBox projection={projection()}>
         <For each={filteredData()}>
           {(item) => (
             <For each={item.places}>
-              {(place) => (
-                <PlaceMarker map={map()!} color={item.color} place={place} />
-              )}
+              {(place) => <PlaceMarker color={item.color} place={place} />}
             </For>
           )}
         </For>
-      </Show>
+      </MapBox>
 
       <div class="absolute bottom-6 right-6 flex flex-col items-end gap-3">
         <div class="flex items-center gap-3 rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">

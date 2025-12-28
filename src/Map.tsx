@@ -7,11 +7,15 @@ import mapboxgl, {
   type ProjectionSpecification,
 } from 'mapbox-gl'
 import {
+  createContext,
   createMemo,
   createSignal,
   onCleanup,
   onMount,
+  Show,
+  useContext,
   type Accessor,
+  type JSX,
 } from 'solid-js'
 import { effect } from 'solid-js/web'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -27,10 +31,12 @@ export type MapData = {
   places: Place[]
 }[]
 
-export function useMap(
-  container: HTMLElement,
-  projection: Accessor<ProjectionSpecification['name']>,
-) {
+export const MapContext = createContext<Accessor<Map>>()
+
+export function MapBox(props: {
+  projection: ProjectionSpecification['name']
+  children: JSX.Element
+}) {
   const dark = usePrefersDark()
   const style = createMemo(
     () => `mapbox://styles/mapbox/${dark() ? 'dark' : 'light'}-v10`,
@@ -55,13 +61,25 @@ export function useMap(
 
   effect(() => {
     const m = map()
-    const p = projection()
+    const p = props.projection
 
     if (!m || !m.loaded()) return
     m.setProjection(p)
   })
 
-  return map
+  const container = (
+    <div style={{ width: '100vw', height: '100vh' }}></div>
+  ) as HTMLDivElement
+  return (
+    <>
+      {container}
+      <Show when={map()}>
+        <MapContext.Provider value={map as Accessor<Map>}>
+          {props.children}
+        </MapContext.Provider>
+      </Show>
+    </>
+  )
 
   function initMap() {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
@@ -71,7 +89,7 @@ export function useMap(
       style: style(),
       center: [100, 30],
       zoom: 2,
-      projection: (projection?.() || 'globe') as any,
+      projection: props.projection,
       dragRotate: true,
       touchPitch: true,
       attributionControl: false,
@@ -100,17 +118,13 @@ export function useMap(
   }
 }
 
-// @unocss-include
-export function PlaceMarker({
-  map,
-  color,
-  place,
-}: {
-  map: Map
-  color: string
-  place: Place
-}) {
+export function PlaceMarker({ color, place }: { color: string; place: Place }) {
   const { label, coords, current } = place
+
+  const map = useContext(MapContext)?.()
+  if (!map) {
+    throw new Error('PlaceMarker must be used within a MapBox')
+  }
 
   const show = () => popup.setLngLat(pos).addTo(map)
   const hide = () => popup.remove()
