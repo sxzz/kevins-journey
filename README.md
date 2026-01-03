@@ -1,6 +1,6 @@
-# Kevin's Footprints
+# Kevin's Journey
 
-Kevin's travel footprints visualized on a map.
+Kevin's travel journey visualized on a map.
 
 ## Credits
 
