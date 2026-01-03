@@ -1,7 +1,7 @@
 # Coordinates from https://nominatim.openstreetmap.org/
 
 - label: Visited
-  color: 'oklch(76.9% 0.188 70.08)'
+  color: '#10b981'
   places:
     # 🇨🇳 China mainland
 
@@ -14,9 +14,6 @@
 
     - label: 长白山站 # N10291003161
       coords: 42.4605171,128.1219234
-
-    - label: 沈阳 # R2769604
-      coords: 41.8026095,123.4279105
 
     - label: 通化站 # W1433790028
       coords: 41.7756642,125.915972
@@ -103,9 +100,6 @@
     - label: 汕尾 # N244085029
       coords: 22.7891796,115.3704551
 
-    - label: 深圳 # R3464353
-      coords: 22.5445741,114.0545429
-
     - label: 中山 # R3464878
       coords: 22.5197073,113.3872302
 
@@ -178,10 +172,6 @@
     - label: 仙台 # N3570916502
       coords: 38.2603516,140.8823921
 
-    # 🇸🇬 Singapore
-    - label: 🇸🇬 Singapore 新加坡 # R536780
-      coords: 1.357107,103.8194992
-
     # 🇪🇺 Europe
     - label: 🇳🇱 Amsterdam # R271110
       coords: 52.3730796,4.8924534
@@ -195,8 +185,21 @@
     - label: 🇮🇹 Milan # R44915
       coords: 45.4641943,9.1896346
 
+- label: Stay
+  color: '#8b5cf6'
+  places:
+    - label: 沈阳 # R2769604
+      coords: 41.8026095,123.4279105
+
+    - label: 深圳 # R3464353
+      coords: 22.5445741,114.0545429
+
+    # 🇸🇬 Singapore
+    - label: 🇸🇬 Singapore 新加坡 # R536780
+      coords: 1.357107,103.8194992
+
 - label: Residence
-  color: 'oklch(62.3% 0.214 259.815)'
+  color: '#f59e0b'
   places:
     - label: 2018.07 南昌 # N244081434
       coords: 28.687547,115.8540042
@@ -212,7 +215,7 @@
       current: true
 
 - label: Airports
-  color: 'oklch(68.5% 0.169 237.323)'
+  color: '#0ea5e9'
   places:
     # AI generated coordinates, may be inaccurate
     - label: HGH # W328062510
@@ -306,7 +309,7 @@
       coords: 30.7756953,114.2171790
 
 - label: Wishlist
-  color: 'oklch(81% 0.117 11.638)'
+  color: '#f43f5e'
   places:
     - label: 🇹🇼 台北 # R1293250
       coords: 25.0375198,121.5636796

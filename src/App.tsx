@@ -1,12 +1,17 @@
+import { createGeolocation } from '@solid-primitives/geolocation'
 import { ReactiveSet } from '@solid-primitives/set'
 import { makePersisted } from '@solid-primitives/storage'
-import { createDeferred, createSignal, For, Index } from 'solid-js'
+import { createDeferred, createSignal, For, Index, Show } from 'solid-js'
 import data from '../data.yaml'
 import { MapBox, PlaceMarker } from './Map'
 import type { ProjectionSpecification } from 'mapbox-gl'
 
 export function App() {
-  const activeLegends = new ReactiveSet<string>(['Visited', 'Residence'])
+  const activeLegends = new ReactiveSet<string>([
+    'Visited',
+    'Stay',
+    'Residence',
+  ])
   const [projection, setProjection] = makePersisted(
     // eslint-disable-next-line solid/reactivity
     createSignal<ProjectionSpecification['name']>('globe'),
@@ -16,6 +21,9 @@ export function App() {
   const filteredData = createDeferred(() =>
     data.filter((item) => activeLegends.has(item.label)),
   )
+  const [location] = createGeolocation({
+    enableHighAccuracy: true,
+  })
 
   return (
     <>
@@ -27,6 +35,19 @@ export function App() {
             </For>
           )}
         </For>
+
+        <Show when={location()}>
+          {(location) => (
+            <PlaceMarker
+              color="#fff"
+              place={{
+                label: 'You are here',
+                coords: [location().longitude, location().latitude],
+                current: true,
+              }}
+            />
+          )}
+        </Show>
       </MapBox>
 
       <div class="absolute bottom-6 right-6 flex flex-col items-end gap-3">

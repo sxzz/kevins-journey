@@ -14,6 +14,9 @@ importers:
       '@mapbox/mapbox-gl-language':
         specifier: ^1.0.1
         version: 1.0.1(mapbox-gl@3.17.0)
+      '@solid-primitives/geolocation':
+        specifier: ^1.5.2
+        version: 1.5.2(solid-js@1.9.10)
       '@solid-primitives/media':
         specifier: ^2.3.3
         version: 2.3.3(solid-js@1.9.10)
@@ -535,6 +538,11 @@ packages:
 
   '@solid-primitives/event-listener@2.4.3':
     resolution: {integrity: sha512-h4VqkYFv6Gf+L7SQj+Y6puigL/5DIi7x5q07VZET7AWcS+9/G3WfIE9WheniHWJs51OEkRB43w6lDys5YeFceg==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@solid-primitives/geolocation@1.5.2':
+    resolution: {integrity: sha512-l4N4ibtDCCSx2R2VVs8gpDrVuRAQ4rZBhHO8F3QJ6Owqsu2kKAYyCf6s0SuPRFkQEiHJRi8tSaDNBqYShlclnQ==}
     peerDependencies:
       solid-js: ^1.6.12
 
@@ -2711,6 +2719,12 @@ snapshots:
 
   '@solid-primitives/event-listener@2.4.3(solid-js@1.9.10)':
     dependencies:
+      '@solid-primitives/utils': 6.3.2(solid-js@1.9.10)
+      solid-js: 1.9.10
+
+  '@solid-primitives/geolocation@1.5.2(solid-js@1.9.10)':
+    dependencies:
+      '@solid-primitives/static-store': 0.1.2(solid-js@1.9.10)
       '@solid-primitives/utils': 6.3.2(solid-js@1.9.10)
       solid-js: 1.9.10
 

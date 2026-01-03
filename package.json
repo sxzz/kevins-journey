@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
+    "@solid-primitives/geolocation": "^1.5.2",
     "@solid-primitives/media": "^2.3.3",
     "@solid-primitives/set": "^0.7.2",
     "@solid-primitives/storage": "^4.3.3",
