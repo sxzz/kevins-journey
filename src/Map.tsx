@@ -130,9 +130,10 @@ export function PlaceMarker(props: { color: string; place: Place }) {
 
   const element = (
     <div
-      class="h-2.5 w-2.5 cursor-pointer border border-white rounded-full bg-[var(--dot-color)] shadow-[0_4px_4px_var(--dot-color)] hover:shadow-[0_8px_24px_var(--dot-color)] hover:brightness-75"
+      class="h-2.5 w-2.5 cursor-pointer border border-white rounded-full bg-[var(--dot-color)] shadow-[0_2px_8px_rgba(0,0,0,0.15),0_1px_3px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.3)] transition-shadow duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.2),0_2px_6px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.4)] hover:brightness-75"
       classList={{
-        'w-4 h-4': props.place.current,
+        'w-4 h-4 shadow-[0_3px_12px_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.4)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.25),0_3px_8px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.5)]':
+          props.place.current,
       }}
       style={{ '--dot-color': props.color }}
       aria-label={props.place.label}

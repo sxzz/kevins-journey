@@ -113,7 +113,7 @@ export function LegendItem(props: {
       onClick={onClick}
     >
       <span
-        class="h-2.5 w-2.5 border-1 border-white rounded-full"
+        class="h-2.5 w-2.5 border-2 border-white rounded-full shadow-[0_0_0_2px_#11182714] dark:shadow-[0_0_0_2px_#ffffff30]"
         style={{ background: props.color }}
         aria-hidden="true"
       />
