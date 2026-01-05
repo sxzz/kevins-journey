@@ -37,6 +37,7 @@ export const MapContext = createContext<Accessor<Map>>()
 export function MapBox(props: {
   projection: ProjectionSpecification['name']
   children: JSX.Element
+  onMapReady?: (map: Map) => void
 }) {
   const dark = usePrefersDark()
   const style = createMemo(
@@ -45,7 +46,9 @@ export function MapBox(props: {
 
   const [map, setMap] = createSignal<Map>()
   onMount(() => {
-    setMap(initMap())
+    const map = initMap()
+    setMap(map)
+    props.onMapReady?.(map)
   })
 
   onCleanup(() => {

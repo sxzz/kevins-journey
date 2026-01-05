@@ -1,9 +1,16 @@
-import { createGeolocation } from '@solid-primitives/geolocation'
 import { ReactiveSet } from '@solid-primitives/set'
 import { makePersisted } from '@solid-primitives/storage'
-import { createDeferred, createSignal, For, Index, Show } from 'solid-js'
+import {
+  createDeferred,
+  createEffect,
+  createSignal,
+  For,
+  Index,
+  Show,
+} from 'solid-js'
 import data from '../data.yaml'
 import { MapBox, PlaceMarker } from './Map'
+import { createGeolocation } from './utils/location'
 import type { ProjectionSpecification } from 'mapbox-gl'
 
 export function App() {
@@ -21,13 +28,29 @@ export function App() {
   const filteredData = createDeferred(() =>
     data.filter((item) => activeLegends.has(item.label)),
   )
-  const [location] = createGeolocation({
-    enableHighAccuracy: true,
-  })
+
+  const [locate, setLocate] = createSignal(false)
+  const [location, reLocate] = createGeolocation(() =>
+    locate() ? { enableHighAccuracy: true } : false,
+  )
+
+  const [map, setMap] = createSignal<mapboxgl.Map>()
+
+  function flyToLocation() {
+    const m = map()
+    const pos = location()
+    if (!m || !pos) return
+
+    m.flyTo({
+      center: [pos.longitude, pos.latitude],
+      zoom: 12,
+    })
+  }
+  createEffect(() => flyToLocation())
 
   return (
     <>
-      <MapBox projection={projection()}>
+      <MapBox projection={projection()} onMapReady={(map) => setMap(map)}>
         <For each={filteredData()}>
           {(item) => (
             <For each={item.places}>
@@ -39,9 +62,9 @@ export function App() {
         <Show when={location()}>
           {(location) => (
             <PlaceMarker
-              color="#fff"
+              color="oklch(62.3% 0.214 259.815)"
               place={{
-                label: 'You are here',
+                label: 'You',
                 coords: [location().longitude, location().latitude],
                 current: true,
               }}
@@ -51,25 +74,6 @@ export function App() {
       </MapBox>
 
       <div class="absolute bottom-6 right-6 flex flex-col items-end gap-3">
-        <div class="max-w-[calc(100vw-3rem)] flex items-center gap-3 overflow-x-auto rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
-          <Index each={data}>
-            {(item) => (
-              <LegendItem
-                label={item().label}
-                color={item().color}
-                active={activeLegends.has(item().label)}
-                onToggle={(value) => {
-                  if (value) {
-                    activeLegends.add(item().label)
-                  } else {
-                    activeLegends.delete(item().label)
-                  }
-                }}
-              />
-            )}
-          </Index>
-        </div>
-
         <div class="flex gap3">
           <div class="flex items-center gap-3 rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
             <button
@@ -90,6 +94,42 @@ export function App() {
               <span class="i-ph:map-trifold-duotone text-xl" aria-label="Map" />
             </button>
           </div>
+
+          <div class="flex items-center gap-3 rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
+            <button
+              class="flex cursor-pointer"
+              onClick={() => {
+                setLocate(true)
+                reLocate()
+                flyToLocation()
+              }}
+            >
+              <span
+                class="i-ph:map-pin-duotone text-xl"
+                classList={{ 'animate-pulse': location.state === 'pending' }}
+                aria-label="Locate me"
+              />
+            </button>
+          </div>
+        </div>
+
+        <div class="max-w-[calc(100vw-3rem)] flex items-center gap-3 overflow-x-auto rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
+          <Index each={data}>
+            {(item) => (
+              <LegendItem
+                label={item().label}
+                color={item().color}
+                active={activeLegends.has(item().label)}
+                onToggle={(value) => {
+                  if (value) {
+                    activeLegends.add(item().label)
+                  } else {
+                    activeLegends.delete(item().label)
+                  }
+                }}
+              />
+            )}
+          </Index>
         </div>
       </div>
     </>
