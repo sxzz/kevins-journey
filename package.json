@@ -8,18 +8,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsgo -b",
+    "typecheck": "vue-tsc -b",
     "lint": "eslint --cache",
     "format": "prettier --write ."
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
-    "@solid-primitives/media": "^2.3.3",
-    "@solid-primitives/set": "^0.7.2",
-    "@solid-primitives/storage": "^4.3.3",
     "@unocss/reset": "^66.6.0",
+    "@vueuse/core": "^13.1.0",
     "mapbox-gl": "^3.18.0",
-    "solid-js": "^1.9.10"
+    "vue": "^3.5.27"
   },
   "devDependencies": {
     "@iconify-json/ph": "^1.2.2",
@@ -27,16 +25,14 @@
     "@sxzz/eslint-config": "^7.5.0",
     "@sxzz/prettier-config": "^2.2.6",
     "@types/node": "^25.0.9",
-    "@typescript/native-preview": "7.0.0-dev.20260120.1",
-    "@unocss/eslint-plugin": "^66.6.0",
+    "@vitejs/plugin-vue": "^5.2.4",
     "eslint": "^9.39.2",
-    "eslint-plugin-solid": "^0.14.5",
     "prettier": "^3.8.1",
     "typescript": "~5.9.3",
     "unocss": "^66.6.0",
     "unplugin-yaml": "^3.0.7",
     "vite": "8.0.0-beta.8",
-    "vite-plugin-solid": "^2.11.10"
+    "vue-tsc": "^2.2.12"
   },
   "pnpm": {
     "overrides": {
