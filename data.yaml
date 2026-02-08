@@ -212,7 +212,6 @@
 
     - label: 2023.08 杭州良渚 # R8273083
       coords: 30.3825313,120.0418306
-      current: true
 
 - label: Airports
   color: '#0ea5e9'
