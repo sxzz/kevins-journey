@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import { useLocalStorage } from '@vueuse/core'
 import { computed, reactive, ref } from 'vue'
 import data from '../data.yaml'

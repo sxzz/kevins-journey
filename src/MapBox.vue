@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
 import { useDark } from '@vueuse/core'
 import mapboxgl, { Map, type ProjectionSpecification } from 'mapbox-gl'

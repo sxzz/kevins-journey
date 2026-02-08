@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import { Marker, Popup, type Map } from 'mapbox-gl'
 import { computed, inject, onUnmounted, watchEffect, type Ref } from 'vue'
 import type { Place } from './types'
