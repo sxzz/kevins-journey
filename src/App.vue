@@ -9,7 +9,7 @@ import type { Map, ProjectionSpecification } from 'mapbox-gl'
 
 const activeLegends = reactive(new Set(['Visited', 'Stay', 'Residence']))
 const projection = useLocalStorage<ProjectionSpecification['name']>(
-  'map-projection',
+  'mapbox-projection',
   'globe',
 )
 
