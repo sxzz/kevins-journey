@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "vue-tsc -b",
+    "typecheck": "golar -b",
     "lint": "eslint --cache",
     "format": "prettier --write ."
   },
@@ -20,6 +20,7 @@
     "vue": "^3.6.0-beta.5"
   },
   "devDependencies": {
+    "@golar/vue": "^0.0.12",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/ri": "^1.2.7",
     "@sxzz/eslint-config": "^7.5.0",
@@ -27,6 +28,7 @@
     "@types/node": "^25.0.9",
     "@vitejs/plugin-vue": "^5.2.4",
     "eslint": "^9.39.2",
+    "golar": "^0.0.12",
     "prettier": "^3.8.1",
     "typescript": "~5.9.3",
     "unocss": "^66.6.0",
