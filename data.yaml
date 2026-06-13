@@ -119,7 +119,7 @@
 
     # # 港澳
 
-    - label: 🇲🇴 澳门 Macao # R1867188
+    - label: 🇲🇴 澳門 Macao # R1867188
       coords: 22.1757605,113.5514142
 
     # 🇰🇷 Korea
@@ -179,7 +179,7 @@
     - label: 🇫🇷 Paris # R71525
       coords: 48.8534951,2.3483915
 
-    - label: 🇮🇹 Milan # R44915
+    - label: 🇮🇹 Milan / Milano # R44915
       coords: 45.4641943,9.1896346
 
 - label: Stay
