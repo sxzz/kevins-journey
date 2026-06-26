@@ -21,7 +21,7 @@ importers:
         specifier: ^3.25.0
         version: 3.25.0
       vue:
-        specifier: ^3.6.0-beta.15
+        specifier: ^3.6.0-beta.17
         version: 3.6.0-beta.17(typescript@6.0.3)
     devDependencies:
       '@golar/vue':

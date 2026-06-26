@@ -5,7 +5,7 @@ import data from '../data.yaml'
 import LegendItem from './LegendItem.vue'
 import MapBox from './MapBox.vue'
 import PlaceMarker from './PlaceMarker.vue'
-import type { Map, ProjectionSpecification } from 'mapbox-gl'
+import type { Map, ProjectionSpecification } from 'mapbox-gl/esm'
 
 const activeLegends = reactive(new Set(['Visited', 'Stay', 'Residence']))
 const projection = useLocalStorage<ProjectionSpecification['name']>(

@@ -1,7 +1,11 @@
 <script setup lang="ts" vapor>
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
 import { useDark } from '@vueuse/core'
-import mapboxgl, { Map, type ProjectionSpecification } from 'mapbox-gl'
+import {
+  Map,
+  setAccessToken,
+  type ProjectionSpecification,
+} from 'mapbox-gl/esm'
 import {
   computed,
   onMounted,
@@ -34,7 +38,7 @@ const loaded = ref(false)
 provide('map', map)
 
 onMounted(() => {
-  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
+  setAccessToken(import.meta.env.VITE_MAPBOX_TOKEN)
 
   const instance = new Map({
     container: container.value!,
@@ -54,7 +58,7 @@ onMounted(() => {
         'zh-hk': 'zh-Hant',
         'zh-tw': 'zh-Hant',
       }[navigator.language.toLowerCase()],
-    }),
+    }) as any,
   )
 
   instance.on('load', () => {
