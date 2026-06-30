@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
-    "@unocss/reset": "^66.7.3",
+    "@unocss/reset": "^66.7.4",
     "@vueuse/core": "^14.3.0",
     "mapbox-gl": "^3.25.0",
     "vue": "^3.6.0-beta.17"
@@ -26,16 +26,16 @@
     "@sxzz/eslint-config": "^8.2.1",
     "@sxzz/prettier-config": "^2.3.1",
     "@types/node": "^26.0.1",
-    "@unocss/eslint-plugin": "^66.7.3",
+    "@unocss/eslint-plugin": "^66.7.4",
     "@vitejs/plugin-vue": "^6.0.7",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "golar": "^0.1.8",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.4",
     "typescript": "~6.0.3",
-    "unocss": "^66.7.3",
+    "unocss": "^66.7.4",
     "unplugin-yaml": "^4.2.1",
-    "vite": "8.1.0",
-    "vue-tsc": "^3.3.5"
+    "vite": "8.1.1",
+    "vue-tsc": "^3.3.6"
   },
   "prettier": "@sxzz/prettier-config"
 }
