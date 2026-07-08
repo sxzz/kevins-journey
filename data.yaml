@@ -332,8 +332,8 @@
     - label: TPE # R19784610
       coords: 25.0793174,121.2345977
 
-    # - label: TSA # R5421750
-    #   coords: 25.066477,121.5548877
+    - label: TSA # R5421750
+      coords: 25.066477,121.5548877
 
 - label: Wishlist
   color: '#f43f5e'
