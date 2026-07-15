@@ -22,13 +22,13 @@ const position = computed(() => {
 })
 
 const el = document.createElement('div')
-el.className = 'h-8 w-8 flex cursor-pointer items-center justify-center'
+el.className = 'h-8 w-8 flex cursor-pointer items-center justify-center group'
 el.setAttribute('aria-label', props.place.label)
 el.tabIndex = 0
 
 const dot = document.createElement('div')
 dot.className =
-  'pointer-events-none h-2.5 w-2.5 border border-white rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.15),0_1px_3px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.3)] transition-shadow duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.2),0_2px_6px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.4)] hover:brightness-75'
+  'pointer-events-none h-2.5 w-2.5 border border-white rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.15),0_1px_3px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.3)] transition-shadow duration-200 group-hover:ring-4 transition-transform transition-400 group-hover:scale-140 group-hover:border-2'
 if (props.place.current) {
   dot.className +=
     ' w-4 h-4 shadow-[0_3px_12px_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.4)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.25),0_3px_8px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.5)]'
