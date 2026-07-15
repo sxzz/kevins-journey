@@ -2,6 +2,7 @@
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
 import { useDark } from '@vueuse/core'
 import {
+  LngLatBounds,
   Map,
   setAccessToken,
   type ProjectionSpecification,
@@ -49,6 +50,10 @@ onMounted(() => {
     dragRotate: true,
     touchPitch: true,
     attributionControl: false,
+  })
+
+  instance.on('load', () => {
+    instance.zoomIn()
   })
 
   instance.addControl(
