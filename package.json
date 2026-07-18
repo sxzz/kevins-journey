@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.14.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,28 +14,28 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
-    "@unocss/reset": "^66.7.4",
+    "@unocss/reset": "^66.7.5",
     "@vueuse/core": "^14.3.0",
-    "mapbox-gl": "^3.25.0",
-    "vue": "^3.6.0-beta.17"
+    "mapbox-gl": "^3.26.0",
+    "vue": "^3.6.0-rc.1"
   },
   "devDependencies": {
-    "@golar/vue": "^0.1.8",
+    "@golar/vue": "^0.1.9",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/ri": "^1.2.10",
     "@sxzz/eslint-config": "^8.2.1",
     "@sxzz/prettier-config": "^2.3.1",
-    "@types/node": "^26.0.1",
-    "@unocss/eslint-plugin": "^66.7.4",
-    "@vitejs/plugin-vue": "^6.0.7",
-    "eslint": "^10.6.0",
-    "golar": "^0.1.8",
-    "prettier": "^3.9.4",
+    "@types/node": "^26.1.1",
+    "@unocss/eslint-plugin": "^66.7.5",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "eslint": "^10.7.0",
+    "golar": "^0.1.9",
+    "prettier": "^3.9.5",
     "typescript": "~6.0.3",
-    "unocss": "^66.7.4",
+    "unocss": "^66.7.5",
     "unplugin-yaml": "^4.2.1",
-    "vite": "8.1.1",
-    "vue-tsc": "^3.3.6"
+    "vite": "8.1.5",
+    "vue-tsc": "^3.3.7"
   },
   "prettier": "@sxzz/prettier-config"
 }

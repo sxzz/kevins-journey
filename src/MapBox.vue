@@ -2,7 +2,6 @@
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
 import { useDark } from '@vueuse/core'
 import {
-  LngLatBounds,
   Map,
   setAccessToken,
   type ProjectionSpecification,
