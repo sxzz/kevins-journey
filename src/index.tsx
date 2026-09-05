@@ -1,9 +1,9 @@
+import { render } from '@solidjs/web'
 import { inject } from '@vercel/analytics'
-import { createVaporApp } from 'vue'
-import App from './App.vue'
+import { App } from './App'
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import './styles.css'
 
 inject()
-createVaporApp(App).mount('#root')
+render(() => <App />, document.querySelector('#root')!)

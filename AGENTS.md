@@ -5,7 +5,7 @@ This documentation provides context, conventions, and instructions for AI agents
 ## 1. Project Overview
 
 This is a personal travel visualization project built with:
-- **Framework**: [SolidJS](https://www.solidjs.com/) (Reactive UI)
+- **Framework**: [SolidJS 2.0](https://www.solidjs.com/) (currently `2.0.0-rc.6`)
 - **Styling**: [UnoCSS](https://unocss.dev/) (Atomic CSS)
 - **Map**: [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/)
 - **Language**: TypeScript
@@ -33,23 +33,25 @@ Use `pnpm` for all package management.
 - **Reactivity**:
   - Use `createSignal` for local state.
   - Use `createMemo` for derived state (especially for expensive calculations or map filters).
-  - Use `createDeferred` for rendering heavy lists to keep the UI responsive.
-  - **Props**: Access props via `props.property` to maintain reactivity. Destructuring props loses reactivity unless using `splitProps`.
+  - Use two-phase `createEffect(compute, apply)`; read reactive inputs in compute and perform side effects in apply.
+  - Use `onSettled` for mounted DOM work and return cleanup functions for listeners and Mapbox resources.
+  - Signal writes are batched; do not expect a read immediately after a setter to return the new value.
+  - **Props**: Access props via `props.property` in reactive scopes. Use `untrack` for intentional one-time reads.
 - **Control Flow**: Prefer Solid's built-in components:
   - `<Show when={...}>` instead of ternary operators.
-  - `<For each={...}>` or `<Index each={...}>` instead of `.map()`.
+  - `<For each={...}>` instead of `.map()`; use `<For keyed={false}>` for index-based rendering.
 - **Context**: Use `createContext` and `useContext` for global state like the Mapbox instance.
 
 ### State Management
-- **Primitives**: Leverage `@solid-primitives` where possible:
-  - `@solid-primitives/set`: For reactive Sets (e.g., active filters).
-  - `@solid-primitives/storage`: For persisting state to localStorage.
+- Use core Solid 2 signals and memos. Replace Sets immutably inside signal setters.
+- Browser preference helpers live in `src/preferences.ts`; preserve their storage keys.
+- Verify Solid 2 compatibility before adding third-party reactive primitives.
 
 ### Styling (UnoCSS)
 - **Utility-First**: Use utility classes directly in the `class` attribute.
-- **Conditional Styling**: Use the `classList` attribute for toggling classes based on state:
+- **Conditional Styling**: Use Solid 2's `class` arrays and objects for toggling classes based on state:
   ```tsx
-  <div classList={{ 'opacity-50': !isActive() }} />
+  <div class={['flex', { 'opacity-50': !isActive() }]} />
   ```
 - **Icons**: Use pure CSS icons via the `i-` prefix (Iconify):
   ```tsx
@@ -76,11 +78,11 @@ Use `pnpm` for all package management.
 - **Importing**: Import YAML files directly; they are handled by `unplugin-yaml`.
 
 ### File Organization
-- **Components**: `src/**/*.tsx` (PascalCase)
+- **Components**: `src/components/*.tsx` (PascalCase)
 - **Configuration**: Root level config files (camelCase/kebab-case)
 - **Entry**: `src/index.tsx`
 - **Main App**: `src/App.tsx`
-- **Map Logic**: `src/Map.tsx`
+- **Map Logic**: `src/components/Map.tsx`
 
 ## 5. Error Handling
 - Use non-null assertions (`!`) only when you are certain a value exists (e.g., after a check or known DOM presence).

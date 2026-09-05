@@ -1,10 +1,10 @@
-import Vue from '@vitejs/plugin-vue'
+import Solid from '@solidjs/vite-plugin'
 import UnoCSS from 'unocss/vite'
 import Yaml from 'unplugin-yaml/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [Vue(), UnoCSS(), Yaml()],
+  plugins: [UnoCSS(), Solid(), Yaml()],
   build: {
     minify: false,
     rolldownOptions: {
