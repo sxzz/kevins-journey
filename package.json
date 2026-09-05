@@ -3,7 +3,13 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@11.22.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.3.1",
+      "onFail": "download"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,24 +20,24 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
-    "@unocss/reset": "^66.8.1",
+    "@unocss/reset": "^66.10.0",
     "@vercel/analytics": "^2.0.1",
     "@vueuse/core": "^14.4.0",
-    "mapbox-gl": "^3.29.0",
-    "vue": "^3.6.0-rc.1"
+    "mapbox-gl": "^3.30.0",
+    "vue": "^3.6.0-rc.7"
   },
   "devDependencies": {
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/ri": "^1.2.10",
-    "@sxzz/eslint-config": "^8.5.0",
+    "@sxzz/eslint-config": "^8.6.0",
     "@sxzz/prettier-config": "^2.3.2",
-    "@types/node": "^26.2.0",
-    "@unocss/eslint-plugin": "^66.8.1",
+    "@types/node": "^26.4.1",
+    "@unocss/eslint-plugin": "^66.10.0",
     "@vitejs/plugin-vue": "^6.0.8",
-    "eslint": "^10.9.0",
+    "eslint": "^10.10.0",
     "prettier": "^3.9.6",
     "typescript": "npm:typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2",
-    "unocss": "^66.8.1",
+    "unocss": "^66.10.0",
     "unplugin-yaml": "^4.2.1",
     "vite": "8.2.2",
     "vue-tsc": "^3.3.11"
