@@ -344,6 +344,9 @@
     - label: TSA # R5421750
       coords: 25.066477,121.5548877
 
+    - label: RMQ # W307469261
+      coords: 24.2671656,120.6286791
+
 - label: Wishlist
   color: '#f43f5e'
   places:
