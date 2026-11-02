@@ -14,7 +14,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.5.0",
+      "version": "12.16.1",
       "onFail": "download"
     }
   },
@@ -30,29 +30,29 @@
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
     "@solidjs/web": "^2.0.0-rc.6",
-    "@unocss/reset": "^66.10.0",
+    "@unocss/reset": "^66.12.0",
     "@vercel/analytics": "^2.0.1",
-    "mapbox-gl": "^3.30.0",
-    "solid-js": "^2.0.0-rc.6"
+    "mapbox-gl": "^3.34.1",
+    "solid-js": "^2.0.0-rc.20"
   },
   "devDependencies": {
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/ri": "^1.2.10",
-    "@solidjs/vite-plugin": "3.0.0-next.38",
-    "@sxzz/eslint-config": "^8.6.0",
-    "@sxzz/prettier-config": "^2.3.2",
+    "@solidjs/vite-plugin": "3.0.0-next.55",
+    "@sxzz/eslint-config": "^8.9.2",
+    "@sxzz/prettier-config": "^2.3.3",
     "@tsdown/css": "^0.23.4",
-    "@types/node": "^26.4.1",
-    "@unocss/eslint-plugin": "^66.10.0",
-    "eslint": "^10.10.0",
-    "prettier": "^3.9.6",
+    "@types/node": "^26.6.6",
+    "@unocss/eslint-plugin": "^66.12.0",
+    "eslint": "^10.14.0",
+    "prettier": "^3.9.10",
     "tsdown": "^0.23.4",
     "typescript": "^6.0.3",
     "typescript-next": "npm:typescript@^7.0.2",
-    "unocss": "^66.10.0",
+    "unocss": "^66.12.0",
     "unplugin-solid": "^3.0.0",
-    "unplugin-yaml": "^4.2.1",
-    "vite": "^8.2.2"
+    "unplugin-yaml": "^4.3.1",
+    "vite": "^8.3.5"
   },
   "prettier": "@sxzz/prettier-config"
 }
