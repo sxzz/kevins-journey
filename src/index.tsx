@@ -1,9 +1,15 @@
-import { render } from '@solidjs/web'
 import { inject } from '@vercel/analytics'
-import { App } from './App'
+import { mount } from './mount'
 import '@unocss/reset/tailwind.css'
-import 'uno.css'
-import './styles.css'
+
+// The map follows the `dark` class, so mirror the system preference onto it.
+const media = matchMedia('(prefers-color-scheme: dark)')
+const syncDark = () =>
+  document.documentElement.classList.toggle('dark', media.matches)
+syncDark()
+media.addEventListener('change', syncDark)
 
 inject()
-render(() => <App />, document.querySelector('#root')!)
+mount(document.querySelector('#root')!, {
+  token: import.meta.env.VITE_MAPBOX_TOKEN,
+})

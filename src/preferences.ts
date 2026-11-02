@@ -43,13 +43,15 @@ export function createStoredPreference<T extends string>(
 }
 
 export function createDarkMode() {
-  const media = matchMedia('(prefers-color-scheme: dark)')
-  const [dark, setDark] = createSignal(media.matches)
+  const root = document.documentElement
+  const [dark, setDark] = createSignal(root.classList.contains('dark'))
 
   onSettled(() => {
-    const onChange = (event: MediaQueryListEvent) => setDark(event.matches)
-    media.addEventListener('change', onChange)
-    return () => media.removeEventListener('change', onChange)
+    const observer = new MutationObserver(() =>
+      setDark(root.classList.contains('dark')),
+    )
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] })
+    return () => observer.disconnect()
   })
 
   return dark

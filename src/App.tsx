@@ -6,7 +6,11 @@ import { PlaceMarker } from './components/PlaceMarker'
 import { createStoredPreference } from './preferences'
 import type { Map as MapboxMap } from 'mapbox-gl/esm'
 
-export function App() {
+export interface AppProps {
+  token: string
+}
+
+export function App(props: AppProps) {
   const [activeLegends, setActiveLegends] = createSignal(
     new Set(['Visited', 'Stay', 'Residence']),
   )
@@ -51,8 +55,8 @@ export function App() {
   }
 
   return (
-    <>
-      <Map projection={projection()} onMapReady={setMap}>
+    <div class="relative size-full overflow-hidden">
+      <Map token={props.token} projection={projection()} onMapReady={setMap}>
         <For each={filteredData()}>
           {(item) => (
             <For each={item.places}>
@@ -114,7 +118,7 @@ export function App() {
           </div>
         </div>
 
-        <div class="max-w-[calc(100vw-3rem)] flex items-center gap-3 overflow-x-auto rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
+        <div class="max-w-[calc(100%-3rem)] flex items-center gap-3 overflow-x-auto rounded-full bg-white/20 px-3 py-2 text-sm text-#111827 shadow-lg backdrop-blur-md dark-text-#f9fafb">
           <For each={data}>
             {(item) => (
               <LegendItem
@@ -134,6 +138,6 @@ export function App() {
           </For>
         </div>
       </div>
-    </>
+    </div>
   )
 }

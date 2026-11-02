@@ -2,7 +2,15 @@
   "name": "kevins-journey",
   "type": "module",
   "version": "0.0.0",
-  "private": true,
+  "exports": {
+    ".": "./lib/mount.js",
+    "./style.css": "./lib/style.css",
+    "./package.json": "./package.json"
+  },
+  "types": "./lib/mount.d.ts",
+  "files": [
+    "lib"
+  ],
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -16,7 +24,8 @@
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "lint": "eslint --cache",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build:lib": "tsdown"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",
@@ -32,13 +41,16 @@
     "@solidjs/vite-plugin": "3.0.0-next.38",
     "@sxzz/eslint-config": "^8.6.0",
     "@sxzz/prettier-config": "^2.3.2",
+    "@tsdown/css": "^0.23.4",
     "@types/node": "^26.4.1",
     "@unocss/eslint-plugin": "^66.10.0",
     "eslint": "^10.10.0",
     "prettier": "^3.9.6",
+    "tsdown": "^0.23.4",
     "typescript": "^6.0.3",
     "typescript-next": "npm:typescript@^7.0.2",
     "unocss": "^66.10.0",
+    "unplugin-solid": "^3.0.0",
     "unplugin-yaml": "^4.2.1",
     "vite": "^8.2.2"
   },

@@ -19,6 +19,7 @@ import { createDarkMode } from '../preferences'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 interface MapProps {
+  token: string
   projection: ProjectionSpecification['name']
   onMapReady: (map: MapboxMap) => void
 }
@@ -34,7 +35,7 @@ export function Map(props: ParentProps<MapProps>) {
   let appliedStyle: string
 
   onSettled(() => {
-    setAccessToken(import.meta.env.VITE_MAPBOX_TOKEN)
+    setAccessToken(untrack(() => props.token))
     appliedStyle = untrack(style)
     const instance = new MapboxMap({
       container,
@@ -96,10 +97,7 @@ export function Map(props: ParentProps<MapProps>) {
 
   return (
     <MapContext value={map}>
-      <div
-        ref={(element) => (container = element)}
-        style={{ width: '100vw', height: '100vh' }}
-      />
+      <div ref={(element) => (container = element)} class="size-full" />
       <Show when={loaded()}>{props.children}</Show>
     </MapContext>
   )
