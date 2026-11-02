@@ -16,12 +16,24 @@ import {
 } from 'solid-js'
 import { MapContext } from '../map-context'
 import { createDarkMode } from '../preferences'
+import type { Language } from '../i18n'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 interface MapProps {
   token: string
+  language: Language
   projection: ProjectionSpecification['name']
   onMapReady: (map: MapboxMap) => void
+}
+
+const traditionalTags: Record<string, string> = {
+  'zh-hk': 'zh-Hant',
+  'zh-tw': 'zh-Hant',
+}
+
+function mapLanguage(language: Language) {
+  if (language === 'en') return 'en'
+  return traditionalTags[navigator.language.toLowerCase()] ?? 'zh-Hans'
 }
 
 export function Map(props: ParentProps<MapProps>) {
@@ -67,11 +79,7 @@ export function Map(props: ParentProps<MapProps>) {
     // Apply fog before the language control can replace the loaded style.
     instance.addControl(
       new MapboxLanguage({
-        defaultLanguage: {
-          'zh-cn': 'zh-Hans',
-          'zh-hk': 'zh-Hant',
-          'zh-tw': 'zh-Hant',
-        }[navigator.language.toLowerCase()],
+        defaultLanguage: mapLanguage(untrack(() => props.language)),
       }) as unknown as IControl,
     )
 
