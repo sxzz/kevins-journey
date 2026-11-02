@@ -1,6 +1,8 @@
 import { defineConfig, presetIcons, presetWind3 } from 'unocss'
 
 // Plain CSS lives here, not in a .css file, so the library ships one stylesheet.
+// `color-scheme` darkens the page canvas that shows around the globe; a `dark:`
+// utility cannot do that because it never matches the `.dark` element itself.
 const popupCss = `
 .mapboxgl-ctrl-logo,
 .mapboxgl-popup-tip {
@@ -16,6 +18,10 @@ const popupCss = `
   box-shadow:
     0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 .dark .mapboxgl-popup-content {
